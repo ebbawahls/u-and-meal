@@ -1,0 +1,373 @@
+/*Global*/
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fefdec;
+  font-family: Syne, Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  color: #6d1627;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/*Header*/
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background-color: #e4682b;
+}
+
+.logo img {
+  max-width: 6.5rem;
+}
+
+/*Hamburger*/
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2.2rem;
+  height: 1.6rem;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.hamburger-menu div {
+  height: 0.3rem;
+  border-radius: 2px;
+  background-color: #6d1627;
+}
+
+/*Mobile menu*/
+
+.menu {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: #e4682b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%);
+  transition: 0.4s ease;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 2rem;
+  z-index: 100;
+}
+
+.menu.active {
+  transform: translateX(0);
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #6d1627;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/*Desktop menu*/
+
+@media (min-width: 768px) {
+  .hamburger-menu {
+    display: none;
+  }
+
+  .menu {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    background: transparent;
+    height: auto;
+    gap: 2rem;
+  }
+
+  .menu li a {
+    font-size: 1rem;
+  }
+}
+
+/*Buttons, inputs & textarea*/
+
+button,
+input,
+textarea {
+  background-color: #fefdec;
+  border: 2px solid #6d1627;
+  border-radius: 15px;
+  font-family: Urbanist, sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.2rem;
+  color: #6d1627;
+  box-sizing: border-box;
+}
+
+button {
+  box-shadow: #6d1627 4px 4px 0;
+  cursor: pointer;
+  line-height: 2.8rem;
+}
+
+button:hover {
+  background-color: #b8b7fb;
+}
+
+button:active {
+  box-shadow: #6d1627 2px 2px 0;
+  transform: translate(2px, 2px);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6d1627;
+  opacity: 0.6;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+/*Desktop min width*/
+@media (min-width: 768px) {
+  button,
+  input,
+  form {
+    min-width: 120px;
+    padding: 0.7rem 1.5rem;
+  }
+}
+
+/*Hero*/
+
+.hero {
+  font-family: Syne, sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin: 5vw;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #d2c847;
+  color: #e4682b;
+}
+
+/*Search recipes*/
+
+.search-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  background-color: #b8b7fb;
+  padding: 6vw;
+}
+
+.search-recipes input {
+  width: 80%;
+  max-width: 600px;
+  padding: 0.8rem 1.2rem;
+}
+
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+/*Recipe card*/
+
+.recipe-card {
+  display: grid;
+  grid-template-areas:
+    "title image"
+    "labelIng labelInt"
+    "ingredients instructions"
+    "deletebtn deletebtn";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr 70px;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 2px solid #fbbe2f;
+  border-radius: 10px;
+  background-color: #5378eb;
+  color: #fbbe2f;
+  font-family: Urbanist, sans-serif;
+  max-width: 550px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .recipe-card {
+    grid-template-areas:
+      "title"
+      "image"
+      "labelIng"
+      "ingredients"
+      "labelInt"
+      "instructions"
+      "deletebtn";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .deleteBtn {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/*Grid area items*/
+
+.name {
+  grid-area: title;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+.image {
+  grid-area: image;
+  border-radius: 10px;
+  border: 2px solid #fbbe2f;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  justify-self: center;
+}
+.labelIng {
+  grid-area: labelIng;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.labelInt {
+  grid-area: labelInt;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.ingredients {
+  grid-area: ingredients;
+}
+.instructions {
+  grid-area: instructions;
+}
+.deleteBtn {
+  grid-area: deletebtn;
+  width: 100%;
+  height: 100%;
+  padding: 0.8rem 1rem;
+  box-sizing: border-box;
+}
+
+#addBtn {
+  grid-area: addbtn;
+}
+
+/*Add recipe*/
+
+.add {
+  background-color: #b8b7fb;
+  padding: 6vw;
+}
+
+#addRecipe {
+  display: grid;
+  grid-template-areas:
+    "title image"
+    "ingredients instructions"
+    "addbtn addbtn";
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 4vw;
+}
+
+@media (max-width: 600px) {
+  #addRecipe {
+    grid-template-areas:
+      "title"
+      "image"
+      "ingredients"
+      "instructions"
+      "addbtn";
+    grid-template-columns: 1fr;
+  }
+}
+
+#recipeImage {
+  border-radius: 10px;
+  border: 2px solid #6d1627;
+}
+
+/*Alert & Confirm*/
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  background: #fefdec;
+  color: #6d1627;
+  padding: 2rem;
+  border: 2px solid #6d1627;
+  border-radius: 12px;
+  box-shadow: #6d1627 4px 4px 0;
+  font-family: Urbanist, sans-serif;
+  text-align: center;
+
+  width: max-content;
+  max-width: 90%;
+}
+
+.confirm-wrapper {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirm-box {
+  background: #fefdec;
+  color: #6d1627;
+  padding: 2rem;
+  border: 2px solid #6d1627;
+  border-radius: 12px;
+  box-shadow: #6d1627 4px 4px 0;
+  font-family: Urbanist, sans-serif;
+  text-align: center;
+}
+
+.confirm-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
